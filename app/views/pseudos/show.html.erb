@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @pseudo %>
+
+<div>
+  <%= link_to "Edit this pseudo", edit_pseudo_path(@pseudo) %> |
+  <%= link_to "Back to pseudos", pseudos_path %>
+
+  <%= button_to "Destroy this pseudo", @pseudo, method: :delete %>
+</div>

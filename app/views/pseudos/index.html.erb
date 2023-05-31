@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Pseudos</h1>
+
+<div id="pseudos">
+  <% @pseudos.each do |pseudo| %>
+    <%= render pseudo %>
+    <p>
+      <%= link_to "Show this pseudo", pseudo %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New pseudo", new_pseudo_path %>

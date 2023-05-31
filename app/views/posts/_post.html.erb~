@@ -1,0 +1,10 @@
+<div id="<%= dom_id post %>">
+  <p>
+    <%= render post.pseudo %>
+  </p>
+
+  <p>
+    <%= post.content %>
+  </p>
+
+</div>

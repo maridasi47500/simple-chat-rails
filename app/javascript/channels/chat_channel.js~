@@ -31,4 +31,4 @@ consumer.subscriptions.create({channel:"ChatChannel",room:"Best Room"}, {
     // Called when there's incoming data on the websocket for this channel
   }
 });
-chatChannel.send({pseudo_id: 1, content: "content"})
+chatChannel.send({pseudo_id: 1, content: ""})

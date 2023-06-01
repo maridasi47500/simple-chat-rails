@@ -1,10 +1,10 @@
- <div class="card" style="max-width:200px;">
+<div class="card" style="max-width:200px;" data-pseudoid="<%=pseudo.id%>">
    <img src="/uploads/<%=pseudo.image%>" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title"><%=pseudo.name%></h5>
-      <p class="card-text"><%=pseudo.description%>
-    <p class="card-text"><%=pseudo.user.try(:email)%></p>
-    <p class="card-text"><small class="text-body-secondary"> dernière modification <%=I18n.l(Date.current)%></small></p>
+      <h5 class="card-title title"><%=pseudo.name%></h5>
+      <p class="card-text description"><%=pseudo.description%>
+    <p class="card-text email"><%=pseudo.user.try(:email)%></p>
+    <p class="card-text"><small class="text-body-secondary modification"> dernière modification <%=I18n.l(Date.current)%></small></p>
     <p class="card-text"><%=link_to "écrire un post", new_post_path(pseudo_id: pseudo.id)%></p>
     </div>
   </div>

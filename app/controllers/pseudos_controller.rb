@@ -38,6 +38,7 @@ class PseudosController < ApplicationController
   def update
     respond_to do |format|
       if @pseudo.update(pseudo_params)
+        AppearanceJob.perform_now(@pseudo)
         format.html { redirect_to pseudo_url(@pseudo), notice: "Pseudo was successfully updated." }
         format.json { render :show, status: :ok, location: @pseudo }
       else

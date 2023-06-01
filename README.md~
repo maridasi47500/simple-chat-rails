@@ -1,0 +1,54 @@
+# bienvenue dans simple chat rails
+#Gemfile
+gem 'actioncable', github: 'rails/actioncable', branch: 'archive'
+gem 'foreman'
+gem 'puma'
+As of this article (~Oct. 2015), Action Cable relies on redis's pubsub feature to route messages back and forth over the WebSocket cable connection, so let's install redis and start the redis server locally. In a future post, I'll touch on deploying and configuring redis via ansible.
+
+// assuming you're using homebrew
+$ brew install redis
+
+$ redis-server
+Now that our redis server is running, let's configure Action Cable to connect to our redis server. By default, ActionCable::Server::Base will look for a configuration file in config/redis/cable.yml.
+
+# config/redis/cable.yml
+
+local: &local
+  :url: redis://localhost:6379
+  :host: localhost
+  :port: 6379
+  :timeout: 1
+  :inline: true
+
+development: *local
+
+test: *local
+Great, now Action Cable has a configuration to load to connect to our redis server. But we're going to run Action Cable as a separate process than our main rails application. To do this, I'm going to use foreman to manage both our main web process and our Action Cable process. So first, let's create a rackup file for our Action Cable process.
+
+# cable/config.ru
+require ::File.expand_path('../../config/environment',  __FILE__)
+Rails.application.eager_load!
+
+require 'action_cable/process/logging'
+
+run ActionCable.server
+Next, I'll create my Procfile to tell foreman about our additional process. In a later post, we'll pull out these hardcoded variables exported via foreman and set in ansible.
+
+// Procfile
+web: bundle exec rails s -p 3000 -e development Puma
+action_cable: bundle exec puma -p 28080 cable/config.ru
+Lastly, we need to create our Connection (to handle authentication) and Channel class (to house logic shared across Channels). For basic setup, this is all you need:
+
+# app/channels/application_cable/connection.rb
+
+module ApplicationCable
+  class Connection < ActionCable::Connection::Base
+  end
+end
+
+# app/channels/application_cable/channel.rb
+module ApplicationCable
+  class Channel < ActionCable::Channel::Base
+  end
+end
+OK. So if we've done everything correctly, running foreman start will boot up our 2 processes

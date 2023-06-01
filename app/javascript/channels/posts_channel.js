@@ -1,4 +1,3 @@
-import consumer from "channels/consumer"
 
 consumer.subscriptions.create({channel:"ChatChannel",room:"Best Room"}, {
   received(data) {

@@ -12,7 +12,7 @@ class PseudosController < ApplicationController
 
   # GET /pseudos/new
   def new
-    @pseudo = Pseudo.new
+    @pseudo = Pseudo.new(user_id:current_user.try(:id))
   end
 
   # GET /pseudos/1/edit

@@ -5,6 +5,8 @@ ruby "3.2.2"
 
 gem 'devise'
 
+gem 'actioncable'
+gem 'foreman'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.5"
 

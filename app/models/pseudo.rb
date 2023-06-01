@@ -1,5 +1,5 @@
 class Pseudo < ApplicationRecord
-  belongs_to :user
+  belongs_to :user,optional:true
   def image=(uploaded_io)
     File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
   file.write(uploaded_io.read)

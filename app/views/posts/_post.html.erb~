@@ -1,7 +1,5 @@
-<div id="<%= dom_id post %>">
-  <p>
+<div class="card" data-post-id="<%=post.id%>" id="<%= dom_id post %>">
     <%= render post.pseudo %>
-  </p>
 
   <p>
     <%= post.content %>

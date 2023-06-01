@@ -4,12 +4,12 @@
 import { createConsumer } from "@rails/actioncable"
 
 export default createConsumer()
-createConsumer('https://localhost:6379/cable')
+createConsumer('https://localhost:6379/websocket')
 
 // Use a function to dynamically generate the URL
 createConsumer(getWebSocketURL)
 
 function getWebSocketURL() {
   const token = localStorage.get('auth-token')
-  return `https://localhost:6379/cable?token=${token}`
+  return `https://localhost:6379/websocket?token=${token}`
 }

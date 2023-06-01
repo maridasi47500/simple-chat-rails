@@ -3,6 +3,9 @@ class ChatJob < ApplicationJob
 
   def perform(*args)
     # Do something later
-    ActionCable.server.broadcast("chat_Best Room", { body: "This Room is Best Room." })
+    @pseudo=args[0]
+    @post=args[1]
+    p @post
+    ChatChannel.broadcast_to(@pseudo,@post)
   end
 end

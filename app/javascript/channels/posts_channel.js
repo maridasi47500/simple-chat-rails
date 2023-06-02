@@ -1,5 +1,6 @@
+import consumer from "/assets/channels/consumer"
 
-consumer.subscriptions.create({channel:"ChatChannel",room:"Best Room"}, {
+var chatChannel=consumer.subscriptions.create({channel:"ChatChannel",room:"Best Room"}, {
   received(data) {
     this.appendLine(data)
   },

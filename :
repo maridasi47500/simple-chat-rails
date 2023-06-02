@@ -1,0 +1,6 @@
+// Import all the channels to be used by Action Cable
+import './cable.js'
+import "./channels/posts_channel.js"
+import "./channels/pseudos_channel.js"
+
+

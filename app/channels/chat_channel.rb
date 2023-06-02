@@ -10,7 +10,8 @@ class ChatChannel < ApplicationCable::Channel
     ActionCable.server.broadcast("chat_#{params[:room]}", mydata)
   end
 
-  def unsubscribed
-    # Any cleanup needed when channel is unsubscribed
-  end
+     def unsubscribed
+          #Unsubscribes all streams associated with this channel from the pubsub queue.
+       stop_all_streams
+     end
 end
